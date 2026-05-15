@@ -1,6 +1,6 @@
 package com.shreyas.healthcare.exception;
 
-import com.shreyas.healthcare.dto.respone.ApiResponce;
+import com.shreyas.healthcare.dto.response.ApiResponce;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,4 +1,4 @@
-package com.shreyas.healthcare.dto.respone;
+package com.shreyas.healthcare.dto.response;
 
 public class ApiResponce<T> {
 
