@@ -1,6 +1,6 @@
 package com.shreyas.healthcare.dto.response;
 
-public class ApiResponce<T> {
+public class ApiResponse<T> {
 
     private boolean success;
 
@@ -8,10 +8,10 @@ public class ApiResponce<T> {
 
     private T data;
 
-    public ApiResponce(){
+    public ApiResponse(){
     }
 
-    public ApiResponce(boolean success, String message, T data){
+    public ApiResponse(boolean success, String message, T data){
         this.success = success;
         this.message = message;
         this.data = data;
