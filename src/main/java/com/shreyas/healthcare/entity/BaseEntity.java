@@ -3,6 +3,7 @@ package com.shreyas.healthcare.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class BaseEntity {
         updatedAt = LocalDateTime.now();
     }
 
+    @PreUpdate
     public void onUpdate(){
         updatedAt = LocalDateTime.now();
     }
