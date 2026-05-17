@@ -7,7 +7,9 @@ import com.shreyas.healthcare.exception.ResourceAlreadyExistsException;
 import com.shreyas.healthcare.repository.PatientRepository;
 import com.shreyas.healthcare.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PatientServiceImpl implements PatientService {
 
     @Autowired
