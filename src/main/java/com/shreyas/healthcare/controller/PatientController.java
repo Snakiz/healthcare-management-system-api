@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/patients")
 public class PatientController {
@@ -35,6 +37,21 @@ public class PatientController {
         ApiResponse<PatientResponseDto> apiResponse = new ApiResponse<>(true, "Patient retrieved successfully", patientResponseDto);
 
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllPatient")
+    public ResponseEntity<ApiResponse<List<PatientResponseDto>>> getAllPatient() {
+
+        List<PatientResponseDto> patients =
+                patientService.getAllPatients();
+
+        ApiResponse<List<PatientResponseDto>> response =
+                new ApiResponse<>(
+                        true,
+                        "Patients fetched successfully",
+                        patients);
+
+        return ResponseEntity.ok(response);
     }
 
 }

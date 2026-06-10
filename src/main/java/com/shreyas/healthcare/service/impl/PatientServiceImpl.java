@@ -10,6 +10,9 @@ import com.shreyas.healthcare.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PatientServiceImpl implements PatientService {
 
@@ -37,6 +40,16 @@ public class PatientServiceImpl implements PatientService {
                 .orElseThrow(() -> new ResourceNotFoundException("Patient with Id " + id + " does not exist"));
 
         return mapToResponseDto(patient);
+    }
+
+    @Override
+    public List<PatientResponseDto> getAllPatients() {
+
+        List<Patient> patients = patientRepository.findAll();
+
+        return patients.stream()
+                .map(this::mapToResponseDto)
+                .collect(Collectors.toList());
     }
 
     private Patient mapToEntity(PatientRequestDto patientRequestDto) {
