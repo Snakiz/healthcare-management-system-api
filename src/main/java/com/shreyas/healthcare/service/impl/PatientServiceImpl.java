@@ -4,6 +4,7 @@ import com.shreyas.healthcare.dto.request.PatientRequestDto;
 import com.shreyas.healthcare.dto.response.PatientResponseDto;
 import com.shreyas.healthcare.entity.Patient;
 import com.shreyas.healthcare.exception.ResourceAlreadyExistsException;
+import com.shreyas.healthcare.exception.ResourceNotFoundException;
 import com.shreyas.healthcare.repository.PatientRepository;
 import com.shreyas.healthcare.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,14 @@ public class PatientServiceImpl implements PatientService {
 
 
         return mapToResponseDto(savePatient);
+    }
+
+    @Override
+    public PatientResponseDto getPatientById(Long id){
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient with Id " + id + " does not exist"));
+
+        return mapToResponseDto(patient);
     }
 
     private Patient mapToEntity(PatientRequestDto patientRequestDto) {

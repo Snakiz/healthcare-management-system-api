@@ -6,5 +6,6 @@ import com.shreyas.healthcare.dto.response.PatientResponseDto;
 public interface PatientService {
 
     PatientResponseDto registerPatient(PatientRequestDto patientRequestDto);
+    PatientResponseDto getPatientById(Long id);
 }
 

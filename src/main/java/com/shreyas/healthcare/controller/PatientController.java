@@ -4,15 +4,11 @@ import com.shreyas.healthcare.dto.request.PatientRequestDto;
 import com.shreyas.healthcare.dto.response.ApiResponse;
 import com.shreyas.healthcare.dto.response.PatientResponseDto;
 import com.shreyas.healthcare.service.PatientService;
-import com.shreyas.healthcare.service.impl.PatientServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/patients")
@@ -29,6 +25,16 @@ public class PatientController {
         ApiResponse<PatientResponseDto> apiResponse = new ApiResponse<>(true, "Patient registered successfully", patientResponseDto);
 
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
-
     }
+
+    @GetMapping("getPatient/{id}")
+    public ResponseEntity<ApiResponse<PatientResponseDto>> getPatientById(@PathVariable Long id) {
+
+        PatientResponseDto patientResponseDto = patientService.getPatientById(id);
+
+        ApiResponse<PatientResponseDto> apiResponse = new ApiResponse<>(true, "Patient retrieved successfully", patientResponseDto);
+
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
 }
