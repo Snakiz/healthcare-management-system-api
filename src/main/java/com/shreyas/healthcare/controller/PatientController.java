@@ -54,4 +54,14 @@ public class PatientController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/updatePatientDetails/{id}")
+    public ResponseEntity<ApiResponse<PatientResponseDto>> updatePatientDetails( @PathVariable Long id, @Valid @RequestBody PatientRequestDto patientRequestDto){
+
+        PatientResponseDto patientResponseDto = patientService.updatePatient(id, patientRequestDto);
+
+        ApiResponse<PatientResponseDto> apiResponse = new ApiResponse<>(true,"Patient details updated with patient id - " + id ,patientResponseDto);
+
+        return ResponseEntity.ok(apiResponse);
+    }
+
 }

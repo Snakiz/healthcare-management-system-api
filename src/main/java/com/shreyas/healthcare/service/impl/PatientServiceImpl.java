@@ -52,6 +52,40 @@ public class PatientServiceImpl implements PatientService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public PatientResponseDto updatePatient(
+            Long id,
+            PatientRequestDto patientRequestDto) {
+
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Patient not found with id: " + id));
+
+        patient.setFirstName(
+                patientRequestDto.getFirstName());
+
+        patient.setLastName(
+                patientRequestDto.getLastName());
+
+        patient.setEmail(
+                patientRequestDto.getEmail());
+
+        patient.setPhoneNumber(
+                patientRequestDto.getPhoneNumber());
+
+        patient.setAge(
+                patientRequestDto.getAge());
+
+        patient.setGender(
+                patientRequestDto.getGender());
+
+        Patient updatedPatient =
+                patientRepository.save(patient);
+
+        return mapToResponseDto(updatedPatient);
+    }
+
     private Patient mapToEntity(PatientRequestDto patientRequestDto) {
 
         Patient patient = new Patient();
