@@ -55,13 +55,21 @@ public class PatientController {
     }
 
     @PutMapping("/updatePatientDetails/{id}")
-    public ResponseEntity<ApiResponse<PatientResponseDto>> updatePatientDetails( @PathVariable Long id, @Valid @RequestBody PatientRequestDto patientRequestDto){
+    public ResponseEntity<ApiResponse<PatientResponseDto>> updatePatientDetails(@PathVariable Long id, @Valid @RequestBody PatientRequestDto patientRequestDto) {
 
         PatientResponseDto patientResponseDto = patientService.updatePatient(id, patientRequestDto);
 
-        ApiResponse<PatientResponseDto> apiResponse = new ApiResponse<>(true,"Patient details updated with patient id - " + id ,patientResponseDto);
+        ApiResponse<PatientResponseDto> apiResponse = new ApiResponse<>(true, "Patient details updated with patient id - " + id, patientResponseDto);
 
         return ResponseEntity.ok(apiResponse);
     }
 
+    @DeleteMapping("/deletePatientDetails/{id}")
+    public ResponseEntity<ApiResponse<PatientResponseDto>> deletePatient(@PathVariable Long id) {
+        PatientResponseDto patientResponseDto = patientService.deletePatient(id);
+
+        ApiResponse<PatientResponseDto> apiResponse = new ApiResponse<>(true, "Patient details deleted with patient id - " + id, patientResponseDto);
+
+        return ResponseEntity.ok(apiResponse);
+    }
 }

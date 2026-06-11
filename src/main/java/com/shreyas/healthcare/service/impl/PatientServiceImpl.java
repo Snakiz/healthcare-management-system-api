@@ -86,6 +86,15 @@ public class PatientServiceImpl implements PatientService {
         return mapToResponseDto(updatedPatient);
     }
 
+    @Override
+    public PatientResponseDto deletePatient(Long id) {
+
+        Patient patient = patientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Patient with id " + id + " does not exist"));
+
+        patientRepository.deleteById(id);
+        return mapToResponseDto(patient);
+    }
+
     private Patient mapToEntity(PatientRequestDto patientRequestDto) {
 
         Patient patient = new Patient();
