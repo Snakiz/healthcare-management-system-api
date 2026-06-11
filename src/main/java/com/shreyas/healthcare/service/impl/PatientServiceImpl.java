@@ -95,6 +95,17 @@ public class PatientServiceImpl implements PatientService {
         return mapToResponseDto(patient);
     }
 
+    @Override
+    public void deleteAllPatients() {
+        List<Patient> patients = patientRepository.findAll();
+
+        if (patients.isEmpty()) {
+            throw new ResourceNotFoundException("No patients found to delete");
+        }
+
+        patientRepository.deleteAll();
+    }
+
     private Patient mapToEntity(PatientRequestDto patientRequestDto) {
 
         Patient patient = new Patient();

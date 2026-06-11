@@ -72,4 +72,13 @@ public class PatientController {
 
         return ResponseEntity.ok(apiResponse);
     }
+
+    @DeleteMapping("/deleteAllPatientDetails")
+    public ResponseEntity<ApiResponse<String>> deleteAllPatients() {
+        patientService.deleteAllPatients();
+
+        ApiResponse<String> apiResponse = new ApiResponse<>(true, "All patient details deleted successfully", null);
+
+        return ResponseEntity.ok(apiResponse);
+    }
 }
